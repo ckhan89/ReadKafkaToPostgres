@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ckhan89/ReadKafkaToPostgres#readme",
   "dependencies": {
     "cookie": "^0.3.1",
-    "kafka-node": "^1.0.6"
+    "kafka-node": "^1.0.6",
+    "query-string": "^4.2.3"
   }
 }

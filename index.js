@@ -1,5 +1,5 @@
-var kafka = require('kafka-node');
-var cookie = require('cookie');
+let kafka = require('kafka-node');
+let queryString = require('query-string');
 
 var Consumer = kafka.Consumer,
 // The client specifies the ip of the Kafka producer and uses
@@ -10,6 +10,6 @@ var Consumer = kafka.Consumer,
 
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
-    var cookies = cookie.parse(message.value)
-    console.log(cookies);
+    var params = queryString.parse(message.value)
+    console.log(params);
 });
