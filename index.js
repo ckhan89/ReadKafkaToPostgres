@@ -1,6 +1,7 @@
 let kafka = require('kafka-node');
+let writeLog = require('./writeLog')
 let queryString = require('query-string');
-
+var logList = []
 var Consumer = kafka.Consumer,
 // The client specifies the ip of the Kafka producer and uses
 // the zookeeper port 2181
@@ -11,5 +12,15 @@ var Consumer = kafka.Consumer,
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
     var params = queryString.parse(message.value)
-    console.log(params);
+    logList.push(params)
+    if (logList.length > 10000) {
+        writeLog.writeData(logList,function (error) {
+            "use strict";
+            if(error) console.log(error)
+            else {
+                console.log('save log success')
+            }
+        })
+        logList = []
+    }
 });
