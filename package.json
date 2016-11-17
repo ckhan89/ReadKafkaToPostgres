@@ -1,0 +1,22 @@
+{
+  "name": "readkafkatopostgres",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ckhan89/ReadKafkaToPostgres.git"
+  },
+  "author": "HanCao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckhan89/ReadKafkaToPostgres/issues"
+  },
+  "homepage": "https://github.com/ckhan89/ReadKafkaToPostgres#readme",
+  "dependencies": {
+    "kafka-node": "^1.0.6"
+  }
+}
