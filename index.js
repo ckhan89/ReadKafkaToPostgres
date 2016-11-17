@@ -1,4 +1,6 @@
 var kafka = require('kafka-node');
+var cookie = require('cookie');
+
 var Consumer = kafka.Consumer,
 // The client specifies the ip of the Kafka producer and uses
 // the zookeeper port 2181
@@ -8,6 +10,7 @@ var Consumer = kafka.Consumer,
 
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
-    var data = JSON.parse(message.value);
-    console.log(data.value);
+    var data = JSON.parse(message);
+    var cookies = cookie.parse(data)
+    console.log(cookies);
 });
