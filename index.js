@@ -15,7 +15,7 @@ consumer.on('message', function (message) {
 
     logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
                     'product': params.product, 'video': params.video, 'viewer': params.viewer})
-    if (logList.length > 1000) {
+    if (logList.length > 100000) {
         writeLog.writeData(logList,function (error) {
             if(error) console.log(error)
             else {
