@@ -8,6 +8,6 @@ var Consumer = kafka.Consumer,
 
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
-    // var data = JSON.parse(message.value);
-    console.log(message);
+    var data = JSON.parse(message.value);
+    console.log(data.value);
 });
