@@ -11,8 +11,8 @@ var Consumer = kafka.Consumer,
 
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
-    var params = queryString.parse(message.value)
-    console.log(params.metric)
+    // var params = queryString.parse(message.value)
+    console.log(message)
     // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
     //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
     // if (logList.length > 10000) {
