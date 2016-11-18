@@ -32,6 +32,7 @@ consumer.on('message', function (message) {
             orderList.push(obj)
         }
     }
+    console.log(obj)
     // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
     //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
     if (pageviewList.length > 10) {
