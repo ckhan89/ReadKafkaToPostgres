@@ -16,54 +16,53 @@ var Consumer = kafka.Consumer,
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
     var array = message.value.split('\t')
-    console.log(array)
 
-    // if(array.length >0) {
-    //     var params = queryString.parse(array[array.length -1])
-    //     console.log(params)
-    //     var created_date
-    //     if (array.length > 1){
-    //         created_date = new Date(array[array.length - 2])
-    //     }
-    //     var obj = params
-    //     obj['created_date'] = created_date
-    //     if (params.metric == 'pageview') {
-    //         pageviewList.push(obj)
-    //     } else if (params.metric == 'click') {
-    //         clickList.push(obj)
-    //     } else if (params.metric == 'order') {
-    //         orderList.push(obj)
-    //     }
-    // }
-    // // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
-    // //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
-    // if (pageviewList.length > 10) {
-    //     writeLog.writeDataPageView(pageviewList,function (error) {
-    //         if(error) console.log(error)
-    //         else {
-    //             console.log('save pageviewList log success')
-    //         }
-    //     })
-    //     pageviewList = new Array()
-    // }
-    //
-    // if (clickList.length > 10) {
-    //     writeLog.writeDataClick(clickList,function (error) {
-    //         if(error) console.log(error)
-    //         else {
-    //             console.log('save clickList log success')
-    //         }
-    //     })
-    //     clickList = new Array()
-    // }
-    //
-    // if (orderList.length > 10) {
-    //     writeLog.writeDataOrder(orderList,function (error) {
-    //         if(error) console.log(error)
-    //         else {
-    //             console.log('save orderList log success')
-    //         }
-    //     })
-    //     orderList = new Array()
-    // }
+    if(array.length > 1) {
+        var params = queryString.parse(array[array.length -2])
+        console.log(params)
+        var created_date
+        if (array.length > 2){
+            created_date = new Date(array[array.length - 3])
+        }
+        var obj = params
+        obj['created_date'] = created_date
+        if (params.metric == 'pageview') {
+            pageviewList.push(obj)
+        } else if (params.metric == 'click') {
+            clickList.push(obj)
+        } else if (params.metric == 'order') {
+            orderList.push(obj)
+        }
+    }
+    // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
+    //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
+    if (pageviewList.length > 10) {
+        writeLog.writeDataPageView(pageviewList,function (error) {
+            if(error) console.log(error)
+            else {
+                console.log('save pageviewList log success')
+            }
+        })
+        pageviewList = new Array()
+    }
+
+    if (clickList.length > 10) {
+        writeLog.writeDataClick(clickList,function (error) {
+            if(error) console.log(error)
+            else {
+                console.log('save clickList log success')
+            }
+        })
+        clickList = new Array()
+    }
+
+    if (orderList.length > 10) {
+        writeLog.writeDataOrder(orderList,function (error) {
+            if(error) console.log(error)
+            else {
+                console.log('save orderList log success')
+            }
+        })
+        orderList = new Array()
+    }
 });
