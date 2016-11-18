@@ -18,6 +18,7 @@ consumer.on('message', function (message) {
     var array = message.value.split('\t')
     if(array.length >0) {
         var params = queryString.parse(array[array.length -1])
+        console.log(params)
         var created_date
         if (array.length > 1){
             created_date = new Date(array[array.length - 2])
@@ -32,7 +33,6 @@ consumer.on('message', function (message) {
             orderList.push(obj)
         }
     }
-    console.log(obj)
     // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
     //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
     if (pageviewList.length > 10) {
