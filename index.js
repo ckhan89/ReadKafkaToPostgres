@@ -12,16 +12,16 @@ var Consumer = kafka.Consumer,
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
     var params = queryString.parse(message.value)
-
-    logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
-                    'product': params.product, 'video': params.video, 'viewer': params.viewer})
-    if (logList.length > 10000) {
-        writeLog.writeData(logList,function (error) {
-            if(error) console.log(error)
-            else {
-                console.log('save log success')
-            }
-        })
-        logList = new Array()
-    }
+    console.log(params.metric)
+    // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
+    //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
+    // if (logList.length > 10000) {
+    //     writeLog.writeData(logList,function (error) {
+    //         if(error) console.log(error)
+    //         else {
+    //             console.log('save log success')
+    //         }
+    //     })
+    //     logList = new Array()
+    // }
 });
