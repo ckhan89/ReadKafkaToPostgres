@@ -22,7 +22,7 @@ consumer.on('message', function (message) {
         if (array.length > 1){
             created_date = new Date(array[array.length - 2])
         }
-        var obj = JSON.parse(params)
+        var obj = params
         obj['created_date'] = created_date
         if (params.metric == 'pageview') {
             pageviewList.push(obj)
