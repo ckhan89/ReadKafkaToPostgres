@@ -45,7 +45,7 @@ consumer.on('message', function (message) {
     }
 
     if (clickList.length > 10) {
-        writeLog.writeDataClick(pageviewList,function (error) {
+        writeLog.writeDataClick(clickList,function (error) {
             if(error) console.log(error)
             else {
                 console.log('save clickList log success')
@@ -55,7 +55,7 @@ consumer.on('message', function (message) {
     }
 
     if (orderList.length > 10) {
-        writeLog.writeDataOrder(pageviewList,function (error) {
+        writeLog.writeDataOrder(orderList,function (error) {
             if(error) console.log(error)
             else {
                 console.log('save orderList log success')
