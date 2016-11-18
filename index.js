@@ -26,6 +26,7 @@ consumer.on('message', function (message) {
         }
         var obj = params
         obj['created_date'] = created_date
+        obj['viewer'] = params.viewer
         if (params.metric == 'pageview') {
             pageviewList.push(obj)
         } else if (params.metric == 'click') {
