@@ -33,7 +33,7 @@ module.exports.writeDataPageView = function (jsonArray, callback) {
 }
 
 module.exports.writeDataClick = function (jsonArray, callback) {
-    var values = new Inserts('${metric},${uuid},${location},${referrer},${url},${product},${video},${viewer},${created_date}', jsonArray)
+    var values = new Inserts('${uuid},${metric},${location},${referrer},${url},${product},${video},${viewer},${created_date}', jsonArray)
     let qformat = 'INSERT INTO click VALUES $1'
     db.none(qformat,values)
         .then(data=>{
@@ -44,8 +44,8 @@ module.exports.writeDataClick = function (jsonArray, callback) {
         })
 }
 
-module.exports.writeDataClick = function (jsonArray, callback) {
-    var values = new Inserts('${metric},${uuid},${location},${referrer},${url},${product},${video},${order},$(customer),${created_date}', jsonArray)
+module.exports.writeDataOrder = function (jsonArray, callback) {
+    var values = new Inserts('${uuid},${metric},${location},${referrer},${url},${product},${video},${order},$(customer),${created_date}', jsonArray)
     let qformat = 'INSERT INTO order_log VALUES $1'
     db.none(qformat,values)
         .then(data=>{

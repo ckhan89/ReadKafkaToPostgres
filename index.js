@@ -34,13 +34,33 @@ consumer.on('message', function (message) {
     }
     // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
     //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
-    if (pageviewList.length > 10000) {
+    if (pageviewList.length > 100) {
         writeLog.writeDataPageView(pageviewList,function (error) {
             if(error) console.log(error)
             else {
-                console.log('save log success')
+                console.log('save pageviewList log success')
             }
         })
         pageviewList = new Array()
+    }
+
+    if (clickList.length > 100) {
+        writeLog.writeDataClick(pageviewList,function (error) {
+            if(error) console.log(error)
+            else {
+                console.log('save clickList log success')
+            }
+        })
+        clickList = new Array()
+    }
+
+    if (orderList.length > 100) {
+        writeLog.writeDataOrder(pageviewList,function (error) {
+            if(error) console.log(error)
+            else {
+                console.log('save orderList log success')
+            }
+        })
+        orderList = new Array()
     }
 });
