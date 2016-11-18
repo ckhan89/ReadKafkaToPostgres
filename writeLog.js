@@ -20,9 +20,33 @@ function Inserts(template, data) {
     };
 }
 
-module.exports.writeData = function (jsonArray, callback) {
-    var values = new Inserts('${uuid},${location},${referrer},${url},${product},${video},${viewer}', jsonArray)
-    let qformat = 'INSERT INTO log VALUES $1'
+module.exports.writeDataPageView = function (jsonArray, callback) {
+    var values = new Inserts('${uuid},${metric},${location},${referrer},${url},${product},${video},${viewer},${created_date}', jsonArray)
+    let qformat = 'INSERT INTO pageview VALUES $1'
+    db.none(qformat,values)
+        .then(data=>{
+            callback(null)
+        })
+        .catch(error=>{
+            callback(error)
+        })
+}
+
+module.exports.writeDataClick = function (jsonArray, callback) {
+    var values = new Inserts('${metric},${uuid},${location},${referrer},${url},${product},${video},${viewer},${created_date}', jsonArray)
+    let qformat = 'INSERT INTO click VALUES $1'
+    db.none(qformat,values)
+        .then(data=>{
+            callback(null)
+        })
+        .catch(error=>{
+            callback(error)
+        })
+}
+
+module.exports.writeDataClick = function (jsonArray, callback) {
+    var values = new Inserts('${metric},${uuid},${location},${referrer},${url},${product},${video},${order},$(customer),${created_date}', jsonArray)
+    let qformat = 'INSERT INTO order_log VALUES $1'
     db.none(qformat,values)
         .then(data=>{
             callback(null)

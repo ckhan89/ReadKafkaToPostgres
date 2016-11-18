@@ -1,7 +1,11 @@
 let kafka = require('kafka-node');
 let writeLog = require('./writeLog')
 let queryString = require('query-string');
-var logList = new Array()
+
+var pageviewList = new Array()
+var clickList = new Array()
+var orderList = new Array()
+
 var Consumer = kafka.Consumer,
 // The client specifies the ip of the Kafka producer and uses
 // the zookeeper port 2181
@@ -11,17 +15,32 @@ var Consumer = kafka.Consumer,
 
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
-    var params = queryString.parse(message.value)
-    console.log(params)
-    logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
-                    'product': params.product, 'video': params.video, 'viewer': params.viewer})
-    if (logList.length > 10000) {
-        writeLog.writeData(logList,function (error) {
+    var array = message.value.split('\t')
+    if(array.length >0) {
+        var params = queryString.parse(array[array.length -1])
+        var created_date
+        if (array.length > 1){
+            created_date = new Date(array[array.length - 2])
+        }
+        var obj = JSON.parse(params)
+        obj['created_date'] = created_date
+        if (params.metric == 'pageview') {
+            pageviewList.push(obj)
+        } else if (params.metric == 'click') {
+            clickList.push(obj)
+        } else if (params.metric == 'order') {
+            orderList.push(obj)
+        }
+    }
+    // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
+    //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
+    if (pageviewList.length > 10000) {
+        writeLog.writeDataPageView(pageviewList,function (error) {
             if(error) console.log(error)
             else {
                 console.log('save log success')
             }
         })
-        logList = new Array()
+        pageviewList = new Array()
     }
 });
