@@ -34,7 +34,7 @@ consumer.on('message', function (message) {
     }
     // logList.push({'uuid':params.uuid, 'location': params.location, 'referrer': params.referrer, 'url': params.url,
     //                 'product': params.product, 'video': params.video, 'viewer': params.viewer})
-    if (pageviewList.length > 100) {
+    if (pageviewList.length > 10) {
         writeLog.writeDataPageView(pageviewList,function (error) {
             if(error) console.log(error)
             else {
@@ -44,7 +44,7 @@ consumer.on('message', function (message) {
         pageviewList = new Array()
     }
 
-    if (clickList.length > 100) {
+    if (clickList.length > 10) {
         writeLog.writeDataClick(pageviewList,function (error) {
             if(error) console.log(error)
             else {
@@ -54,7 +54,7 @@ consumer.on('message', function (message) {
         clickList = new Array()
     }
 
-    if (orderList.length > 100) {
+    if (orderList.length > 10) {
         writeLog.writeDataOrder(pageviewList,function (error) {
             if(error) console.log(error)
             else {
