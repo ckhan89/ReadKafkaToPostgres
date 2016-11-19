@@ -2,6 +2,7 @@ let kafka = require('kafka-node');
 let writeLog = require('./writeLog')
 let queryString = require('query-string');
 let useragent = require('useragent');
+useragent(true)
 
 var pageviewList = new Array()
 var clickList = new Array()
