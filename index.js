@@ -46,7 +46,7 @@ consumer.on('message', function (message) {
         }
     }
 
-    new CronJob('0 */5 * * * *', function() {
+    new CronJob('0 */1 * * * *', function() {
         console.log('You will see this message every minute');
         var taskList = []
         taskList.push(function (callback) {
