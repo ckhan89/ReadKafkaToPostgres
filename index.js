@@ -1,6 +1,7 @@
 let kafka = require('kafka-node');
 let writeLog = require('./writeLog')
 let queryString = require('query-string');
+let useragent = require('useragent');
 
 var pageviewList = new Array()
 var clickList = new Array()
@@ -16,14 +17,19 @@ var Consumer = kafka.Consumer,
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
     var array = message.value.split('\t')
-    console.log(array)
     if(array.length > 1) {
         var params = queryString.parse(array[array.length -2])
         var created_date
         if (array.length > 2){
             created_date = new Date(array[array.length - 3])
         }
+
         var obj = params
+        if (array.length > 3) {
+            var agent = useragent.parse(array[array.length - 4]);
+            obj.device = agent.device.toString()
+            console.log(obj.device)
+        }
         obj['created_date'] = created_date
         obj['viewer'] = params.viewer
         if (params.metric == 'pageview') {
