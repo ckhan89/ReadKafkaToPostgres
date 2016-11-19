@@ -17,10 +17,14 @@
   },
   "homepage": "https://github.com/ckhan89/ReadKafkaToPostgres#readme",
   "dependencies": {
+    "async": "^2.1.2",
     "cookie": "^0.3.1",
+    "cron": "^1.1.1",
     "kafka-node": "^1.0.6",
     "pg-promise": "^5.3.5",
     "query-string": "^4.2.3",
-    "useragent": "^2.1.9"
+    "request": "^2.79.0",
+    "useragent": "^2.1.9",
+    "yamlparser": "0.0.2"
   }
 }
