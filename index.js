@@ -18,6 +18,7 @@ var Consumer = kafka.Consumer,
 consumer.on('message', function (message) {
     // grab the main content from the Kafka message
     var array = message.value.split('\t')
+    console.log(array)
     if(array.length > 1) {
         var params = queryString.parse(array[array.length -2])
         var created_date
