@@ -64,7 +64,7 @@ consumer.on('message', function (message) {
         clickList = new Array()
     }
 
-    if (orderList.length > 10) {
+    if (orderList.length > 0) {
         writeLog.writeDataOrder(orderList,function (error) {
             if(error) console.log(error)
             else {
