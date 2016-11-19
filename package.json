@@ -20,6 +20,7 @@
     "cookie": "^0.3.1",
     "kafka-node": "^1.0.6",
     "pg-promise": "^5.3.5",
-    "query-string": "^4.2.3"
+    "query-string": "^4.2.3",
+    "useragent": "^2.1.9"
   }
 }
