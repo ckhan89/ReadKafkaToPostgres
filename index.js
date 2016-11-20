@@ -90,7 +90,7 @@ new CronJob('0 */1 * * * *', function() {
     })
     taskList.push(function (callback) {
         if (orderList.length > 0) {
-            console.log('writeDataOrder')
+            console.log('writeDataOrder:',orderList)
             writeLog.writeDataOrder(orderList,function (error) {
                 if(error) callback(error)
                 else {
