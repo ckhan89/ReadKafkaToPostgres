@@ -45,7 +45,7 @@ module.exports.writeDataClick = function (jsonArray, callback) {
 }
 
 module.exports.writeDataOrder = function (jsonArray, callback) {
-    var values = new Inserts('${uuid},${metric},${location},${referrer},${url},${product},${video},${created_date},${device},${order},$(customer)', jsonArray)
+    var values = new Inserts('${uuid},${metric},${location},${referrer},${url},${product},${video},${created_date},${device},${order}', jsonArray)
     let qformat = 'INSERT INTO log_order VALUES $1'
     db.none(qformat,values)
         .then(data=>{
