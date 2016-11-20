@@ -45,64 +45,64 @@ consumer.on('message', function (message) {
             orderList.push(obj)
         }
     }
-
-    new CronJob('0 */1 * * * *', function() {
-        console.log('You will see this message every minute');
-        var taskList = []
-        taskList.push(function (callback) {
-            if (pageviewList.length > 0) {
-                writeLog.writeDataPageView(pageviewList,function (error) {
-                    if(error) callback(error)
-                    else {
-                        console.log('save pageviewList log success')
-                    }
-                })
-                pageviewList = new Array()
-                callback(null)
-            } else {
-                callback(null)
-            }
-        })
-        
-        taskList.push(function (callback) {
-            if (clickList.length > 0) {
-                writeLog.writeDataClick(clickList,function (error) {
-                    if(error) callback(error)
-                    else {
-                        console.log('save clickList log success')
-                    }
-                })
-                clickList = new Array()
-                callback(null)
-            } else {
-                callback(null)
-            }
-        })
-        taskList.push(function (callback) {
-            if (orderList.length > 0) {
-                writeLog.writeDataOrder(orderList,function (error) {
-                    if(error) callback(error)
-                    else {
-                        console.log('save orderList log success')
-                    }
-                })
-                orderList = new Array()
-                callback(null)
-            } else {
-                callback(null)
-            }
-        })
-        Async.series(taskList,function (error,results) {
-            if (error) console.log(error)
-            else {
-                console.log('save data')
-                // consumer.commit(function (err,data) {
-                //     if (err) console.log(err)
-                //     else {
-                //         console.log('data:',data)
-                //     }
-                // })
-            }
-        })
-    }, null, true, 'America/Los_Angeles');
 });
+
+new CronJob('0 */1 * * * *', function() {
+    console.log('You will see this message every minute');
+    var taskList = []
+    taskList.push(function (callback) {
+        if (pageviewList.length > 0) {
+            writeLog.writeDataPageView(pageviewList,function (error) {
+                if(error) callback(error)
+                else {
+                    console.log('save pageviewList log success')
+                }
+            })
+            pageviewList = new Array()
+            callback(null)
+        } else {
+            callback(null)
+        }
+    })
+
+    taskList.push(function (callback) {
+        if (clickList.length > 0) {
+            writeLog.writeDataClick(clickList,function (error) {
+                if(error) callback(error)
+                else {
+                    console.log('save clickList log success')
+                }
+            })
+            clickList = new Array()
+            callback(null)
+        } else {
+            callback(null)
+        }
+    })
+    taskList.push(function (callback) {
+        if (orderList.length > 0) {
+            writeLog.writeDataOrder(orderList,function (error) {
+                if(error) callback(error)
+                else {
+                    console.log('save orderList log success')
+                }
+            })
+            orderList = new Array()
+            callback(null)
+        } else {
+            callback(null)
+        }
+    })
+    Async.series(taskList,function (error,results) {
+        if (error) console.log(error)
+        else {
+            console.log('save data')
+            // consumer.commit(function (err,data) {
+            //     if (err) console.log(err)
+            //     else {
+            //         console.log('data:',data)
+            //     }
+            // })
+        }
+    })
+}, null, true, 'America/Los_Angeles');
